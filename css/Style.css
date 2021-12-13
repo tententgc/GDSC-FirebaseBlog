@@ -1,5 +1,14 @@
 @import url('../css/fonts.css');
 
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    width: 100%
+}
 
 html,
 body {
@@ -215,9 +224,9 @@ p {
     flex: 0 0 calc(16.6667% - 10px);
     display: flex;
     justify-content: center;
-    background: #a8a8a8;
+    background: #FFECB3;
     padding: 12px;
-    color: #fff;
+    color: #000;
     margin: 5px;
     cursor: pointer;
     transition: all 0.4s ease;
@@ -233,4 +242,121 @@ p {
 
 .category-title span {
     color: #222;
+}
+
+
+/** single post **/
+.posts-main-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 40px;
+}
+
+.posts-main-container>div {
+    box-shadow: 0px 8px 22px -12px rgba(0, 0, 0, 0.64);
+}
+
+.post-img {
+    position: relative;
+}
+
+.category-name {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    text-transform: uppercase;
+    font-size: 13px;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 2px;
+}
+
+.business .category-name {
+    background: #4285f4;
+}
+
+.culture .category-name {
+    background: #e84435;
+}
+
+.politics .category-name {
+    background: #0f9d58;
+}
+
+.finance .category-name {
+    background: #fbbc04;
+}
+
+.sports .category-name {
+    background: #676c72;
+}
+
+
+.post-content {
+    padding: 25px;
+}
+
+.post-content-top {
+    background: #676c72;
+    color: #fff;
+    opacity: 0.8;
+    padding: 5px 0 5px 15px;
+}
+
+.post-content-top span {
+    padding-right: 20px;
+}
+
+.post-content-top .fa-comment,
+.post-content-top .fa-calendar {
+    padding-right: 5px;
+}
+
+.post-content h2 {
+    font-size: 22px;
+    padding: 12px 0;
+    font-weight: 400;
+}
+
+.post-content p {
+    opacity: 0.7;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.read-btn {
+    border: none;
+    padding: 8px 15px;
+    display: block;
+    margin: 5px auto;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    border: 1px solid #292929;
+    background: transparent;
+    margin-bottom: 40px;
+}
+
+.read-btn:hover {
+    background: #FFCDD2;
+}
+
+/***************/
+@media(max-width: 1170px) {
+    .posts-main-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 768px) {
+    .posts-main-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/***********/
+
+.active {
+    background: #fbbc04;
 }
