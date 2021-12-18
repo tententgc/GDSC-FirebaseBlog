@@ -18,21 +18,21 @@ body {
 }
 
 :root {
-
+    
     /*      Theme colors        */
-    --text-gray: #3f4954;
-    --text-light: #686666da;
-    --bg-color: #0f0f0f;
-    --white: #ffffff;
-    --midnight: #104f55;
+    --text-gray: #3F4954;
+    --text-light: #686666DA;
+    --bg-color: #0F0F0F;
+    --white: #FFFFFF;
+    --midnight: #104F55;
     --yellow1: #FFE699;
     --yellow2: #FFF9B6;
     --google-lt-yellow: #FFECB3;
-    --google-yellow: #fbbc04;
-
+    --google-yellow: #FBBC04;
+    
     /* gradient color   */
-    --sky: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
-
+    --sky: linear-gradient(120deg, #A1C4FD 0%, #C2E9FB 100%);
+    
     /*      theme font-family   */
     --Abel: 'Abel', cursive;
     --Anton: 'Anton', cursive;
@@ -40,10 +40,6 @@ body {
     --Lexend: 'Lexend', cursive;
     --Livvic: 'Livvic', cursive;
 }
-
-
-
-
 
 /* ---------------- Global Classes ---------------*/
 
@@ -112,7 +108,7 @@ p {
 }
 
 .nav {
-    background: #f9f9f9;
+    background: #F9F9F9;
     padding: 0 2rem;
     height: 0rem;
     min-height: 10vh;
@@ -196,13 +192,13 @@ p {
     padding: 40px 0;
 }
 
-.main-container>h2 {
+.main-container > h2 {
     text-align: center;
     padding: 10px 0;
     font-size: 32px;
 }
 
-.main-container>p {
+.main-container > p {
     font-weight: 300;
     padding: 10px 0;
     opacity: 0.7;
@@ -226,7 +222,7 @@ p {
     justify-content: center;
     background: #FFECB3;
     padding: 12px;
-    color: #000;
+    color: #000000;
     margin: 5px;
     cursor: pointer;
     transition: all 0.4s ease;
@@ -241,9 +237,8 @@ p {
 }
 
 .category-title span {
-    color: #222;
+    color: #222222;
 }
-
 
 /** single post **/
 .posts-main-container {
@@ -252,7 +247,7 @@ p {
     grid-gap: 40px;
 }
 
-.posts-main-container>div {
+.posts-main-container > div {
     box-shadow: 0px 8px 22px -12px rgba(0, 0, 0, 0.64);
 }
 
@@ -266,29 +261,29 @@ p {
     left: 20px;
     text-transform: uppercase;
     font-size: 13px;
-    color: #fff;
+    color: #FFFFFF;
     padding: 4px 10px;
     border-radius: 2px;
 }
 
 .business .category-name {
-    background: #4285f4;
+    background: #4285F4;
 }
 
 .culture .category-name {
-    background: #e84435;
+    background: #E84435;
 }
 
 .politics .category-name {
-    background: #0f9d58;
+    background: #0F9D58;
 }
 
 .finance .category-name {
-    background: #fbbc04;
+    background: #FBBC04;
 }
 
 .sports .category-name {
-    background: #676c72;
+    background: #676C72;
 }
 
 
@@ -297,8 +292,8 @@ p {
 }
 
 .post-content-top {
-    background: #676c72;
-    color: #fff;
+    background: #676C72;
+    color: #FFFFFF;
     opacity: 0.8;
     padding: 5px 0 5px 15px;
 }
@@ -342,13 +337,13 @@ p {
 }
 
 /***************/
-@media(max-width: 1170px) {
+@media (max-width: 1170px) {
     .posts-main-container {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media(max-width: 768px) {
+@media (max-width: 768px) {
     .posts-main-container {
         grid-template-columns: 1fr;
     }
@@ -358,5 +353,5 @@ p {
 /***********/
 
 .active {
-    background: #fbbc04;
+    background: #FBBC04;
 }
