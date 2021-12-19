@@ -12,9 +12,10 @@ img {
 
 html,
 body {
-    margin: 0%;
+    margin: 0;
     box-sizing: border-box;
     overflow-x: hidden;
+    background-color: #F9F9F9;
 }
 
 :root {
@@ -98,9 +99,8 @@ p {
     color: var(--text-light);
 }
 
-/* ------x------- Global Classes -------x-------*/
+/* --------------- Navbar ----------------- */
 
-/* --------------- navbar ----------------- */
 * {
     box-sizing: border-box;
     padding: 0;
@@ -110,58 +110,10 @@ p {
 .nav {
     background: #F9F9F9;
     padding: 0 2rem;
-    height: 0rem;
-    min-height: 10vh;
+    height: 0;
+    min-height: 64px;
     overflow: hidden;
     transition: height 1s ease-in-out;
-}
-
-.nav .nav-menu {
-    justify-content: space-between;
-}
-
-.nav .toggle-collapse {
-    position: absolute;
-    top: 0%;
-    width: 90%;
-    cursor: pointer;
-    display: none;
-}
-
-.nav .toggle-collapse .toggle-icons {
-    display: flex;
-    justify-content: flex-end;
-    padding: 1.7rem 0;
-}
-
-.nav .toggle-collapse .toggle-icons i {
-    font-size: 1.4rem;
-    color: var(--text-gray);
-}
-
-.collapse {
-    height: 30rem;
-}
-
-.nav .nav-items {
-    display: flex;
-    margin: 0;
-}
-
-.nav .nav-items .nav-link {
-    padding: 1.6rem 1rem;
-    font-size: 1.1rem;
-    position: relative;
-    font-family: var(--Abel);
-    font-size: 1.1rem;
-}
-
-.nav .nav-items .nav-link:hover {
-    background-color: var(--google-yellow);
-}
-
-.nav .nav-items .nav-link:hover a {
-    color: var(--white);
 }
 
 .nav .nav-brand a {
@@ -169,22 +121,7 @@ p {
     padding: 1rem 0;
     display: block;
     font-family: var(--Lexend);
-    font-size: 1.6rem;
 }
-
-.nav .social {
-    padding: 1.4rem 0
-}
-
-.nav .social i {
-    padding: 0 .2rem;
-}
-
-.nav .social i:hover {
-    color: var(--pink2);
-}
-
-/* -------x------- navbar ---------x------- */
 
 .main-container {
     width: 80vw;
@@ -226,6 +163,8 @@ p {
     margin: 5px;
     cursor: pointer;
     transition: all 0.4s ease;
+    border-radius: 999px;
+    font-family: var(--Lexend);
 }
 
 .category-title:hover {
@@ -240,19 +179,24 @@ p {
     color: #222222;
 }
 
-/** single post **/
 .posts-main-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 40px;
 }
 
-.posts-main-container > div {
-    box-shadow: 0px 8px 22px -12px rgba(0, 0, 0, 0.64);
+.post {
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 22px -12px rgba(0, 0, 0, 0.64);
+    border-radius: 16px;
+    overflow: hidden;
 }
 
 .post-img {
     position: relative;
+    height: 192px;
+    background-position: center;
+    background-size: cover;
 }
 
 .category-name {
@@ -266,26 +210,25 @@ p {
     border-radius: 2px;
 }
 
-.business .category-name {
-    background: #4285F4;
-}
-
-.culture .category-name {
+.category-name.culture {
     background: #E84435;
 }
 
-.politics .category-name {
+.category-name.politics {
     background: #0F9D58;
 }
 
-.finance .category-name {
+.category-name.finance {
     background: #FBBC04;
 }
 
-.sports .category-name {
-    background: #676C72;
+.category-name.business {
+    background: #4285F4;
 }
 
+.category-name.sports {
+    background: #676C72;
+}
 
 .post-content {
     padding: 25px;
@@ -311,6 +254,7 @@ p {
     font-size: 22px;
     padding: 12px 0;
     font-weight: 400;
+    min-height: 96px;
 }
 
 .post-content p {
@@ -320,23 +264,22 @@ p {
 }
 
 .read-btn {
-    border: none;
+    width: 128px;
     padding: 8px 15px;
     display: block;
-    margin: 5px auto;
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
-    cursor: pointer;
     border: 1px solid #292929;
+    border-radius: 8px;
     background: transparent;
-    margin-bottom: 40px;
+    margin: 5px auto 40px;
+    text-align: center;
 }
 
 .read-btn:hover {
     background: #FFCDD2;
 }
 
-/***************/
 @media (max-width: 1170px) {
     .posts-main-container {
         grid-template-columns: repeat(2, 1fr);
@@ -349,9 +292,45 @@ p {
     }
 }
 
-
-/***********/
-
 .active {
     background: #FBBC04;
+}
+
+.separator {
+    margin: 24px 0;
+}
+
+.blog-content {
+    position: relative;
+    border-radius: 16px;
+    background-color: #FFFFFF;
+    padding: 64px 32px 24px 32px;
+    box-shadow: 0 4px 22px -12px rgba(0, 0, 0, 0.64);
+    font-family: var(--Lexend);
+    min-height: 100vh;
+}
+
+.blog-content h1 {
+    margin-bottom: 16px;
+}
+
+.blog-id {
+    background-color: #0F9D58;
+    position: absolute;
+    top: 24px;
+    left: 32px;
+    text-transform: uppercase;
+    font-size: 13px;
+    color: #FFFFFF;
+    padding: 4px 10px;
+    border-radius: 2px;
+}
+
+.blog-date {
+    background: #676C72;
+    color: #FFFFFF;
+    opacity: 0.8;
+    padding: 5px 0 5px 15px;
+    width: 256px;
+    margin-bottom: 16px;
 }
