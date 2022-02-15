@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo read write update and delete</title>
+    <style>
+      
+      label {
+        display: inline-block;
+        width: 80px;
+        color: #000;
+      }
+      input,
+      select {
+        width: 120px;
+        
+      }
+    </style>
+  </head>
+  <body>
+    <label>ID</label><input id="ID" type="text" /> <br /><br />
+    <label>Title</label><input id="Title" type="text" /> <br /><br />
+    <label>Contents</label><input id="Namebox" type="text" /> <br /><br />
+    <label>dates</label><input id="Rollbox" type="text" /> <br /><br />
+    <label>Names</label><input id="Secbox" type="text" /><br /><br />
+    <label>Category</label>
+    <select id="Genbox">
+      <option value="Culture">Culture</option>
+      <option value="Politics">Politics</option>
+      <option value="Finance">Finance</option>
+      <option value="Business">Business</option>
+      <option value="Sports">Sports</option>
+
+    </select>
+
+    <hr />
+    <button id="Insbtn">INSERT</button>
+    <button id="Selbtn">SELECT</button>
+    <button id="Updbtn">UPDATE</button>
+    <button id="Delbtn">DELETE</button>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyA6-V8YqNbwzLnDYGuH_NcTQEGJo8uWves",
+        authDomain: "fir-firebase-9d483.firebaseapp.com",
+        projectId: "fir-firebase-9d483",
+        storageBucket: "fir-firebase-9d483.appspot.com",
+        messagingSenderId: "940797358150",
+        appId: "1:940797358150:web:7628b2c5beb4d1f5a0da47",
+        measurementId: "G-BP4W3724FZ",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+
+      import {
+        getFirestore,
+        doc,
+        getDoc,
+        setDoc,
+        collection,
+        updateDoc,
+        addDoc,
+        deleteDoc,
+        deleteField,
+      } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+      const db = getFirestore();
+      //--------References--------------//
+      let idbox  = document.getElementById("ID"); 
+      let titlebox = document.getElementById("Title"); 
+      let NameBox = document.getElementById("Namebox");
+      let RollBox = document.getElementById("Rollbox");
+      let SecBox = document.getElementById("Secbox");
+      let GenBox = document.getElementById("Genbox");
+
+      let insBtn = document.getElementById("Insbtn");
+      let selBtn = document.getElementById("Selbtn");
+      let updBtn = document.getElementById("Updbtn");
+      let delBtn = document.getElementById("Delbtn");
+
+
+      //--------ADDING DDOUMENT ------///
+
+      async function AddDocument_AutoID() {
+        var ref = collection(db, "blog list");
+
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var dateTime = date+' '+time;
+        const docRef = await addDoc(
+        ref, {
+          Title: titlebox.value,
+          Contents: NameBox.value,
+          dates : dateTime.toString(), 
+          Names : SecBox.value,
+          Category : Genbox.value,
+        })
+          .then(() => {
+            alert("data added successfully");
+          })
+          .catch((error) => {
+            alert("Unsuccessdul operation , error : " + error);
+          });
+        console.log("doucument id is " + docRef.id); 
+      }
+
+      //----Addinf document with manual id ----//
+
+      async function AddDocument_CustomID() {
+        var ref = doc(db, "blog list", idbox.value);
+
+        
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var dateTime = date+' '+time;
+        await setDoc(
+        ref, {
+          Title: titlebox.value, 
+          Contents : NameBox.value,
+          dates : dateTime.toString(),
+          Names: SecBox.value,
+          Category: Genbox.value
+        })
+          .then(() => {
+            alert("data added successfully");
+          })
+          .catch((error) => {
+            alert("Unsuccessdul operation , error : " + error);
+          });
+      }
+
+      //-------getting Document----//
+
+      async function GetADocument() {
+        var ref = doc(db, "blog list", idbox.value);
+        const docSnap = await getDoc(ref);
+
+        if (docSnap.exists()) {
+          titlebox.value = docSnap.data().Title;
+          NameBox.value = docSnap.data().Contents;
+          RollBox.value = docSnap.data().dates; 
+          SecBox.value = docSnap.data().Names;
+          GenBox.value = docSnap.data().Category;
+          alert("data found successfully"); 
+        } else {
+          alert("No such document!");
+        }
+      }
+      //-----Updating Document Data-----///
+
+    async function UpdateFieldsInDocument(){
+        var ref = doc(db,"blog list",idbox.value);
+        
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var dateTime = date+' '+time;
+        await updateDoc(
+            ref, {
+                Title: titlebox.value,
+                Contents: NameBox.value,
+                // dates: RollBox.value,
+                dates : dateTime.toString(), 
+                Names : SecBox.value, 
+                Category : GenBox.value
+            }
+        )
+        .then(()=> {
+            alert("data updated successful"); 
+        })
+        .catch((error)=>{
+            alert("Unsuccessful operation,error " + error); 
+        })
+    }
+//-----Deleting Document-----//
+        async function DeleteDocument(){
+            var ref = doc(db,"blog list",idbox.value);
+            const docSnap = await getDoc(ref); 
+
+            if(!docSnap.exists()){
+                alert("Document does not exist"); 
+                return; 
+            }
+            await deleteDoc(ref) 
+            .then(()=>{
+                alert("Document deleted successfully"); 
+            })
+            .catch((error)=>{
+                alert("Unsuccessful operation,error " + error); 
+            })
+        }
+
+      //---------Assign event to btn --------//
+      insBtn.addEventListener("click", AddDocument_CustomID);
+      selBtn.addEventListener("click", GetADocument);
+      updBtn.addEventListener("click", UpdateFieldsInDocument);
+      delBtn.addEventListener("click", DeleteDocument);
+    </script>
+  </body>
+</html>
